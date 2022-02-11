@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect } from "react";
+import bar_chart from "./components/Provisional_COVID-19_Deaths_by_Age/bar_chart";
+import scatter_plot from "./components/Quality_of_Life_Index_by_Purchasing_Power_Index/scatter_plot";
+import line_chart from "./components/Life_expectancy_1900-2013/line_chart";
 
 function App() {
+  useEffect(() => {
+    bar_chart();
+    scatter_plot();
+    line_chart();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Dataviz</h1>
+      <div className="viz">
+        Provisional COVID-19 Deaths by Age in U.S (by 1/29/2022)
+        <div id="Provisional_COVID-19_Deaths_by_Age" />
+      </div>
+      <div className="viz">
+        Quality of Life Index by Purchasing Power Index
+        <div id="Quality_of_Life_Index_by_Purchasing_Power_Index" />
+      </div>
+      <div className="viz">
+        Life Expectancy (1900-2013)
+        <div id="Life_expectancy_1900-2013" />
+      </div>
     </div>
   );
 }
