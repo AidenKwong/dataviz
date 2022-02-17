@@ -95,10 +95,10 @@ const bar_chart = () => {
       // enter a second time = loop subgroup per subgroup to add all rectangles
       .data((d) => d)
       .join("rect")
-      .attr("x", (d) => x(d.data["Age Group"]))
       .attr("y", (d) => y(d[1]))
-      .attr("height", (d) => y(d[0]) - y(d[1]))
-      .attr("width", x.bandwidth());
+      .attr("width", x.bandwidth())
+      .attr("x", (d) => x(d.data["Age Group"]))
+      .attr("height", (d) => y(d[0]) - y(d[1]));
   });
 };
 

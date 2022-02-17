@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import bar_chart from "./components/Provisional_COVID-19_Deaths_by_Age/bar_chart";
 import scatter_plot from "./components/Quality_of_Life_Index_by_Purchasing_Power_Index/scatter_plot";
 import line_chart from "./components/Life_expectancy_1900-2013/line_chart";
+import LineChart from "./components/ECharts/LineChart";
+import ScatterPlot from "./components/ECharts/ScatterPlot";
+import HeatMap from "./components/ECharts/HeatMap";
 
 function App() {
   useEffect(() => {
@@ -26,6 +29,9 @@ function App() {
         Life Expectancy (1900-2013)
         <div id="Life_expectancy_1900-2013" />
       </div>
+      <LineChart />
+      <ScatterPlot />
+      <HeatMap />
     </div>
   );
 }
