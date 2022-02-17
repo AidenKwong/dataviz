@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 
-var option = {
+const option = {
+  title: {
+    text: "Scatter Plot Example",
+    left: "center",
+    top: 0,
+  },
   xAxis: {},
   yAxis: {},
   series: [
@@ -44,7 +49,17 @@ const ScatterPlot = () => {
     option && myChart.setOption(option);
   }, []);
 
-  return <div ref={chartRef} style={{ width: "480px", height: "480px" }} />;
+  return (
+    <div
+      ref={chartRef}
+      style={{
+        border: "1px solid black",
+        padding: "1em",
+        width: "480px",
+        height: "480px",
+      }}
+    />
+  );
 };
 
 export default ScatterPlot;
