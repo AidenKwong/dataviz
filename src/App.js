@@ -30,8 +30,8 @@ function App() {
         <div id="Life_expectancy_1900-2013" />
       </div>
       <LineChart />
-      <ScatterPlot />
       <HeatMap />
+      <ScatterPlot />
     </div>
   );
 }
