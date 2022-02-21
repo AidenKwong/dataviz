@@ -6,6 +6,7 @@ import line_chart from "./components/Life_expectancy_1900-2013/line_chart";
 import LineChart from "./components/ECharts/LineChart";
 import ScatterPlot from "./components/ECharts/ScatterPlot";
 import HeatMap from "./components/ECharts/HeatMap";
+import CorrelationMatrix from "./components/ECharts/CorrelationMatrix";
 
 function App() {
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
       </div>
       <LineChart />
       <HeatMap />
+      <CorrelationMatrix />
       <ScatterPlot />
     </div>
   );

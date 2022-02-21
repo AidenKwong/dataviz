@@ -1,27 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import * as echarts from "echarts";
 import * as d3 from "d3";
 import dataFile from "./Asset_Class_Data.csv";
 
+const compare = (a, b) => {
+  if (a.value < b.value) {
+    return -1;
+  }
+  if (a.value > b.value) {
+    return 1;
+  }
+  return 0;
+};
+
 const HeatMap = () => {
   const chartRef = useRef();
 
-  d3.csv(dataFile).then((data, i) => {
+  d3.csv(dataFile).then((data) => {
     const years = [...data.columns.slice(1)];
-    const targets = data.map((d) => d[""]).reverse();
-    const names = [];
+    const groups = data.map((d) => d[""]);
+    const valuesPerYear = years.map((yr) =>
+      data.map((itm) => ({ id: itm[""], value: +itm[yr].replace("%", "") }))
+    );
+    const sortedValuesPerYear = valuesPerYear.map((d) => d.sort(compare));
     const output = [];
-    for (var y = 0; y < data.length; y++) {
-      for (var x = 0; x < data.columns.length - 1; x++) {
+    for (var yr = 0; yr < years.length; yr++) {
+      for (var id = 0; id < data.length; id++) {
         output.push([
-          x,
-          y,
-          data[data.length - y - 1][data.columns[x + 1]].replace("%", "") ||
-            "-",
+          yr,
+          id,
+          sortedValuesPerYear[yr][id]["value"],
+          sortedValuesPerYear[yr][id]["id"],
         ]);
       }
     }
-    console.log(data, targets);
 
     const option = {
       title: {
@@ -37,6 +49,7 @@ const HeatMap = () => {
         top: "10%",
       },
       xAxis: {
+        position: "top",
         type: "category",
         data: years,
         splitArea: {
@@ -44,31 +57,33 @@ const HeatMap = () => {
         },
       },
       yAxis: {
+        show: false,
         type: "category",
-        data: targets,
         splitArea: {
           show: true,
         },
       },
       visualMap: {
-        min: 0,
-        max: 10,
-        calculable: false,
-        orient: "vertical",
         left: "right",
-        bottom: "60%",
+        bottom: "40%",
+        type: "piecewise",
+        categories: groups,
+        dimension: 3,
         inRange: {
           color: [
-            "#d9ed92",
-            "#b5e48c",
-            "#99d98c",
-            "#76c893",
-            "#52b69a",
-            "#34a0a4",
-            "#168aad",
-            "#1a759f",
-            "#1e6091",
-            "#184e77",
+            "#6D9CCA",
+            "#B2669A",
+            "#DF3E29",
+            "#325184",
+            "#8E9349",
+            "#BBD036",
+            "#E49385",
+            "#553F3D",
+            "#C9B498",
+            "#EEEA39",
+            "#F17F41",
+            "#C0C0C7",
+            "#51BC9F",
           ],
         },
       },
@@ -78,9 +93,11 @@ const HeatMap = () => {
           data: output,
           label: {
             show: true,
-            // formatter: (param) => {
-            //   return console.log(param);
-            // },
+            formatter: (param) => {
+              return `${
+                sortedValuesPerYear[param.data[0]][param.data[1]].id
+              }\n${param.data[2]}%`;
+            },
           },
           emphasis: {
             itemStyle: {
@@ -102,8 +119,8 @@ const HeatMap = () => {
       ref={chartRef}
       style={{
         border: "1px solid black",
-        width: "960px",
-        height: "720px",
+        width: "1600px",
+        height: "1024px",
       }}
     />
   );
