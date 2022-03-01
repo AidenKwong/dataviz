@@ -7,6 +7,8 @@ import LineChart from "./components/ECharts/LineChart";
 import ScatterPlot from "./components/ECharts/ScatterPlot";
 import HeatMap from "./components/ECharts/HeatMap";
 import CorrelationMatrix from "./components/ECharts/CorrelationMatrix";
+import StackedAreaChart from "./components/ECharts/StackedAreaChart";
+import NFT_Treemap from "./components/ECharts/NFT_Treemap";
 
 function App() {
   useEffect(() => {
@@ -17,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Dataviz</h1>
+      {/* <h1>Dataviz</h1>
       <div className="viz">
         Provisional COVID-19 Deaths by Age in U.S (by 1/29/2022)
         <div id="Provisional_COVID-19_Deaths_by_Age" />
@@ -33,7 +35,9 @@ function App() {
       <LineChart />
       <HeatMap />
       <CorrelationMatrix />
-      <ScatterPlot />
+      <StackedAreaChart />
+      <ScatterPlot /> */}
+      <NFT_Treemap />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import * as echarts from "echarts";
 import * as d3 from "d3";
-import dataFile from "./Asset_Class_Data.csv";
+import dataFile from "../../datasets/Asset_Class_Data.csv";
 
 const compare = (a, b) => {
   if (a.value < b.value) {

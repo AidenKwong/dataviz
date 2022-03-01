@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import * as d3 from "d3";
 import * as echarts from "echarts";
-import dataFile from "./Correlation_Matrix_Data.csv";
+import dataFile from "../../datasets/Correlation_Matrix_Data.csv";
 
 const CorrelationMatrix = () => {
   const chartRef = useRef();
